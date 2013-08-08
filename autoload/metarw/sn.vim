@@ -31,23 +31,25 @@ function! metarw#sn#complete(arglead, cmdline, cursorpos)
 endfunction
 
 function! metarw#sn#read(fakepath)
-  let l = split(a:fakepath, ':')
-  if len(l) < 2
-    return ['error', printf('Unexpected fakepath: %s', string(a:fakepath))]
-  endif
-  let err = s:authorization()
-  if len(err)
-    return ['error', err]
-  endif
-  let url = printf('https://simple-note.appspot.com/api/note?key=%s&auth=%s&email=%s', l[1], s:token, s:email)
-  let res = webapi#http#get(url)
-  if res.status =~ '^2'
-    setlocal noswapfile
-    put =iconv(res.content, 'utf-8', &encoding)
-    let b:sn_key = l[1]
-    return ['done', '']
-  endif
-  return ['error', res.header[0]]
+  let g:sn_called = 1
+  return ['done', '']
+"   let l = split(a:fakepath, ':')
+"   if len(l) < 2
+"     return ['error', printf('Unexpected fakepath: %s', string(a:fakepath))]
+"   endif
+"   let err = s:authorization()
+"   if len(err)
+"     return ['error', err]
+"   endif
+"   let url = printf('https://simple-note.appspot.com/api/note?key=%s&auth=%s&email=%s', l[1], s:token, s:email)
+"   let res = webapi#http#get(url)
+"   if res.status =~ '^2'
+"     setlocal noswapfile
+"     put =iconv(res.content, 'utf-8', &encoding)
+"     let b:sn_key = l[1]
+"     return ['done', '']
+"   endif
+"   return ['error', res.header[0]]
 endfunction
 
 function! metarw#sn#write(fakepath, line1, line2, append_p)
