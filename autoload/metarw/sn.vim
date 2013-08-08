@@ -31,7 +31,7 @@ function! metarw#sn#complete(arglead, cmdline, cursorpos)
 endfunction
 
 function! metarw#sn#read(fakepath)
-  let g:sn_called = 1
+  let g:sn_fakepath = string(a:fakepath)
   return ['done', '']
 "   let l = split(a:fakepath, ':')
 "   if len(l) < 2
