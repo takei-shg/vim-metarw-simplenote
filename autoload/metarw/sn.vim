@@ -20,7 +20,7 @@ function! metarw#sn#complete(arglead, cmdline, cursorpos)
         if res.status =~ '^2'
           let lines = split(iconv(res.content, 'utf-8', &encoding), "\n")
           let s:titles[node.key] = len(lines) > 0 ? lines[0] : ''
-        elseif
+        else
           echoerr printf('cannot get content for the key: %s \n', node.key)
         endif
       endif
@@ -31,25 +31,26 @@ function! metarw#sn#complete(arglead, cmdline, cursorpos)
 endfunction
 
 function! metarw#sn#read(fakepath)
-  let g:sn_fakepath = string(a:fakepath)
-  return ['done', '']
-"   let l = split(a:fakepath, ':')
-"   if len(l) < 2
-"     return ['error', printf('Unexpected fakepath: %s', string(a:fakepath))]
-"   endif
-"   let err = s:authorization()
-"   if len(err)
-"     return ['error', err]
-"   endif
-"   let url = printf('https://simple-note.appspot.com/api/note?key=%s&auth=%s&email=%s', l[1], s:token, s:email)
-"   let res = webapi#http#get(url)
-"   if res.status =~ '^2'
-"     setlocal noswapfile
-"     put =iconv(res.content, 'utf-8', &encoding)
-"     let b:sn_key = l[1]
-"     return ['done', '']
-"   endif
-"   return ['error', res.header[0]]
+  " fakepath = sn: . {note_key}
+  let l = split(a:fakepath, ':')
+  if len(l) < 2
+    return ['error', printf('Unexpected fakepath: %s', string(a:fakepath))]
+  endif
+
+  let g:notekey = l[1]
+
+  if len(s:authorization())
+    return ['error', 'error in authorization']
+  endif
+  let url = printf('https://simple-note.appspot.com/api/note?key=%s&auth=%s&email=%s', l[1], s:token, s:email)
+  let res = webapi#http#get(url)
+  if res.status =~ '^2'
+    setlocal noswapfile
+    put = iconv(res.content, 'utf-8', &encoding)
+    let b:sn_key = l[1]
+    return ['done', '']
+  endif
+  return ['error', res.header[0]]
 endfunction
 
 function! metarw#sn#write(fakepath, line1, line2, append_p)
