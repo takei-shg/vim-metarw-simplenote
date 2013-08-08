@@ -37,17 +37,17 @@ function! metarw#sn#read(fakepath)
     return ['error', printf('Unexpected fakepath: %s', string(a:fakepath))]
   endif
 
-  let g:notekey = l[1]
+  let note_key = l[1]
 
   if len(s:authorization())
     return ['error', 'error in authorization']
   endif
-  let url = printf('https://simple-note.appspot.com/api/note?key=%s&auth=%s&email=%s', l[1], s:token, s:email)
+  let url = printf('https://simple-note.appspot.com/api/note?key=%s&auth=%s&email=%s', note_key, s:token, s:email)
   let res = webapi#http#get(url)
   if res.status =~ '^2'
     setlocal noswapfile
     put = iconv(res.content, 'utf-8', &encoding)
-    let b:sn_key = l[1]
+    let b:sn_key = note_key
     return ['done', '']
   endif
   return ['error', res.header[0]]
