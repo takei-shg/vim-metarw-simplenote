@@ -16,8 +16,8 @@ install
 
     NeoBundle "kana/vim-metarw"
     NeoBundle "mattn/webapi-vim"
-    NeoBundle "takei-shg/unite-source-simplenote"
-    NeoBundle "takei-shg/vim-metarw-simplenote"
+    NeoBundle "takei-shg/unite-source-simplenote", "takei-shg"
+    NeoBundle "takei-shg/vim-metarw-simplenote", "takei-shg"
 
 using
 -----
