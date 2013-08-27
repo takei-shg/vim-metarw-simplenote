@@ -30,11 +30,14 @@ using
     and you can save it via online with :w.  
 
     - Start with `:Unite simplenote`
+      -- now the note list is note ordered.
     - Select 'simplenote'
     - To edit note (pressing <tab> shows action list)
       -- action 'edit'
-    - To edit tag
-      -- action 'edit_tag'
+    - To edit tag(now it does not update tags)
+      -- action 'edit_tags'
+    - To create note(now it does not create note)
+      -- action 'create_note'
 
 author
 ------
