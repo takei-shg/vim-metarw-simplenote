@@ -240,9 +240,7 @@ function! metarw#service#simplenote#authorization()"{{{
   if len(s:token) > 0
     return s:TRUE
   endif
-  " let s:email = input('email:')
-  " FIXME: hard coded email address
-  let s:email = 'takei.shg@gmail.com'
+  let s:email = input('email:')
   let password = inputsecret('password:')
   let creds = webapi#base64#b64encode(printf('email=%s&password=%s', s:email, password))
   let res = webapi#http#post(s:AUTH_URL, creds)
