@@ -11,12 +11,29 @@ install
     git clone https://github.com/mattn/webapi-vim.git
     git clone https://github.com/mattn/vim-metarw-simplenote.git
 
+  (*takei-shg*)
+    use neo-bundle/bundle
+
+    NeoBundle "kana/vim-metarw"
+    NeoBundle "mattn/webapi-vim"
+    NeoBundle "takei-shg/unite-source-simplenote"
+    NeoBundle "takei-shg/vim-metarw-simplenote"
+
 using
 -----
 
   :Edit sn:`<tab>`
+  (*takei-shg*) Auto-completion with tab doesn't work.
+    Once opened a note, it is named sn:<id>,
+    and you can save it via online with :w.
 
 author
 ------
 
   Yasuhiro Matsumoto `<mattn.jp@gmail.com>`
+
+notes
+-----
+
+  Now, it can edit simplenote via metarw, though it is too slow.
+  The serious bugs are fixed, but it's quality is not high.
