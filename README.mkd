@@ -23,9 +23,18 @@ using
 -----
 
   :Edit sn:`<tab>`
-  (*takei-shg*) Auto-completion with tab doesn't work.
-    Once opened a note, it is named sn:<id>,
-    and you can save it via online with :w.
+
+
+  (*takei-shg*) Auto-completion with tab doesn't work.  
+    Once opened a note, it is named sn:<id>,  
+    and you can save it via online with :w.  
+
+    - Start with `:Unite simplenote`
+    - Select 'simplenote'
+    - To edit note (pressing <tab> shows action list)
+      -- action 'edit'
+    - To edit tag
+      -- action 'edit_tag'
 
 author
 ------
@@ -35,5 +44,5 @@ author
 notes
 -----
 
-  Now, it can edit simplenote via metarw, though it is too slow.
+  Now, it can edit simplenote via metarw, though it is too slow.  
   The serious bugs are fixed, but it's quality is not high.
